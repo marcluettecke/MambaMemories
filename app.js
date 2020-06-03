@@ -63,8 +63,8 @@ app.use("/memories", memoriesRoutes)
 app.use("/memories/:id/comments", commentRoutes)
 
 //start server
-var server_port = process.env.YOUR_PORT || process.env.PORT || port;
-var server_host = process.env.YOUR_HOST || '0.0.0.0';
-server.listen(server_port, server_host, function() {
+const server_port = process.env.YOUR_PORT || process.env.PORT || port;
+const server_host = process.env.YOUR_HOST || '0.0.0.0';
+app.listen(server_port, server_host, function() {
     console.log('Listening on port %d', server_port);
 });
