@@ -18,7 +18,14 @@ const memoriesRoutes = require("./routes/memories"),
 //clear DB and fill it with example data for debugging
 //seed the DB
 seedDB()
-
+mongoose.connect("mongodb+srv://m1gnoc:B-ball1234@cluster0-bmh3h.mongodb.net/test?retryWrites=true&w=majority"
+, {useNewUrlParser: true,useCreateIndex: true}).then(() => {
+        console.log("Connected to DB")
+}
+).catch(err => {
+        console.log('Error: ', err.message)
+}
+)
 mongoose.connect("mongodb://localhost:27017/memories", {useNewUrlParser: true, useUnifiedTopology: true})
 let app = express()
 app.use(bodyParser.urlencoded({extended: true}))
