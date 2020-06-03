@@ -1,0 +1,30 @@
+.index-thumbnail img {
+    display: block;
+    width: 100%;
+    height: 150px;
+}
+
+.index-thumbnail{
+    padding: 0;
+    width : 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+
+.delete-form {
+    display: inline;
+}
+
+.like-button {
+    padding: 10px 0;
+
+}
+
+.navbar-default .navbar-brand:hover {
+    color: rgb(85,37,130);
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: rgb(85,37,130);
+}

@@ -1,0 +1,38 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container"><h1>Welcome to MambaMemories</h1>
+            <p>View our hand-picked Mamba memories. RIP #24 / #8</p>
+            <p>
+                <a href="/memories/new" class="btn btn-primary btn-lg">Add new memory</a>
+            </p></div>
+    </header>
+
+    <div class="row text-center" style="display: flex; flex-wrap: wrap">
+
+        <% memories.forEach( (memory) => { %>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail index-thumbnail">
+                    <img src="<%= memory.image %>">
+                    <div class="caption">
+                        <h4><%= memory.name %></h4>
+                        <div>
+                            <span class="badge label-primary"><i
+                                        class="fas fa-thumbs-up"></i> <%= memory.likes.length %></span>
+                        </div>
+                    </div>
+                    <p>
+                        <a href="/memories/<%= memory._id %>" class="btn btn-primary">More info</a>
+                    </p>
+                </div>
+
+            </div>
+        <% }) %>
+    </div>
+
+
+</div>
+
+<%- include ("../partials/footer") %>
