@@ -8,7 +8,7 @@ const bodyParser = require("body-parser"),
     User = require("./models/user"),
     methodOverride = require("method-override"),
     flash = require("connect-flash"),
-    port = 4000
+    port = 3000
 
 // routes imports
 const memoriesRoutes = require("./routes/memories"),
