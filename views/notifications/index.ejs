@@ -1,0 +1,15 @@
+<%- include ("../partials/header") %>
+
+<h1>Notifications</h1>
+
+<ul>
+	<% allNotifications.forEach(function(notification) { %>
+	<li>
+		<a href="/memories/<%= notification.memoryId %>">
+			<%=notification.memoryId%><%= notification.username %> created a new memory %>
+		</a>
+	</li>
+	<% }); %>
+</ul>
+
+<%- include ("../partials/footer") %>

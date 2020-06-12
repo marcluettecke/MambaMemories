@@ -1,7 +1,9 @@
 const express = require("express"),
     router = express.Router(),
     Memories = require("../models/memories"),
-    middleware = require("../middleware")
+    User = require("../models/user"),
+    middleware = require("../middleware"),
+    Notification = require("../models/notification")
 
 // memory route
 router.get("/", (req, res) => {
@@ -18,28 +20,69 @@ router.get("/", (req, res) => {
 )
 
 // CREATE - post route for new entry
-router.post("/", middleware.isLoggedIn, (req, res) => {
-        let name = req.body.name
-        let image = req.body.image
-        let date = new Date(req.body.date).toDateString()
-        // let date = mongoose_date.getDate()
-        let description = req.body.description
-        let author = {
-            id: req.user._id,
-            username: req.user.username
-        }
-        let newMemory = {name: name, image: image, description: description, author: author, date: date}
+// router.post("/", middleware.isLoggedIn, async function (req, res) {
+//         let name = req.body.name
+//         let image = req.body.image
+//         let date = new Date(req.body.date).toDateString()
+//         let description = req.body.description
+//         let author = {
+//             id: req.user._id,
+//             username: req.user.username
+//         }
+//         let newMemory = {name: name, image: image, description: description, author: author, date: date}
+//         try {
+//             let memory = await Memories.create(newMemory)
+//             let user = await User.findById(req.user._id).populate('followers').exec()
+//             let newNotification = {
+//                 username: req.user.username,
+//                 memoryID: memory.id
+//             }
+//             for (const follower of user.followers) {
+//                 let notification = await Notification.create(newNotification)
+//                 follower.notifications.push(notification)
+//                 follower.save()
+//             }
+//             res.redirect(`/memories/${memory.id}`)
+//         } catch (err) {
+//             req.flash('error', err.message)
+//             res.redirect('back')
+//         }
+//     }
+// )
 
-        Memories.create(newMemory, (err) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    res.redirect("/memories")
-                }
-            }
-        )
+//CREATE - add new campground to DB
+router.post("/", middleware.isLoggedIn, async function(req, res){
+    // get data from form and add to campgrounds array
+    var name = req.body.name;
+    var image = req.body.image;
+    let date = new Date(req.body.date).toDateString();
+    var desc = req.body.description;
+    var author = {
+        id: req.user._id,
+        username: req.user.username
     }
-)
+    var newMemory = {name: name, image: image, description: desc, author:author, date: date}
+
+    try {
+      let memory = await Memories.create(newMemory);
+      let user = await User.findById(req.user._id).populate('followers').exec();
+      let newNotification = {
+        username: req.user.username,
+        memoryId: memory.id
+      }
+      for(const follower of user.followers) {
+        let notification = await Notification.create(newNotification);
+        follower.notifications.push(notification);
+        follower.save();
+      }
+
+      //redirect back to campgrounds page
+      res.redirect(`/memories/${memory.id}`);
+    } catch(err) {
+      req.flash('error', err.message);
+      res.redirect('back');
+    }
+});
 
 
 // form route new entry

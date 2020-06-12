@@ -24,7 +24,8 @@
                 </div>
                 </p>
                 <p>
-                    <em>Submitted by <%= memory.author.username %>, <%= moment(memory.createdAt).fromNow() %> </em>
+                    <em>Submitted by <a href="/users/<%= memory.author.id %>"><%= memory.author.username %></a>
+                    </em>
                 </p>
                 <% if (currentUser && memory.author.id.equals(currentUser._id)) { %>
                     <a class="btn btn-xs btn-warning" href="/memories/<%= memory._id %>/edit">Edit</a>
@@ -49,9 +50,7 @@
                                     </button>
                                 <% } %>
                             <% } %>
-<!--                            <button type="button" class="btn btn-sm btn-default" data-toggle="modal"-->
-<!--                                    data-target="#memoryLikes">See more details-->
-<!--                            </button>-->
+
                         </div>
                     </form>
                 </div>

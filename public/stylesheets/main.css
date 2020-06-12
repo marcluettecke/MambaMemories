@@ -1,30 +1,151 @@
+body {
+    /*background-color: rgba(253, 185, 39, 0.2);*/
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: #777;
+    padding: 3rem;
+    box-sizing: border-box;
+    /*clip-path: polygon(35% 0, 0% 100%, 60% 0);*/
+}
+
+/* header coloring*/
+.navbar-inverse {
+    background-color: rgb(85, 37, 130);
+}
+
+.navbar-inverse .navbar-brand {
+    color: rgb(253, 185, 39);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: rgb(253, 185, 39);
+}
+
+/*buttons coloring*/
+.btn {
+    background-color: rgb(85, 37, 130);
+    color: #fff;
+    border: none;
+}
+
+.btn:hover {
+    background-color: rgb(85, 37, 130);
+    color: rgb(253, 185, 39)
+}
+
+.btn:focus {
+    color: rgb(253, 185, 39);
+}
+
+/*.btn-primary:active {*/
+/*    background-color: rgb(85, 37, 130);*/
+/*}*/
+
+/*.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {*/
+/*    border-color: rgb(85, 37, 130);*/
+/*}*/
+
+.jumbotron {
+    background-color: transparent;
+    color: black;
+    outline: white 0.2rem solid;
+}
+
+.like-button {
+    padding: 10px 0;
+}
+
+.btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--white {
+    background-color: #fdb927;
+    color: #552582;
+}
+
+.btn--white::after {
+    background-color: rgb(253, 185, 39);
+}
+
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+}
+
+
+.header__logo {
+    height: 3.5rem;
+}
+
+.header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
 .index-thumbnail img {
     display: block;
     width: 100%;
     height: 150px;
 }
 
-.index-thumbnail{
+.index-thumbnail {
     padding: 0;
-    width : 100%;
+    width: 100%;
     height: 300px;
     overflow: hidden;
 }
 
 
-.delete-form {
-    display: inline;
-}
-
-.like-button {
-    padding: 10px 0;
-
-}
-
-.navbar-default .navbar-brand:hover {
-    color: rgb(85,37,130);
-}
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: rgb(85,37,130);
+/*background*/
+.box1 {
+    position: absolute;
+    z-index: -1;
+    /*-webkit-clip-path: polygon(0 0, 100% 35%, 100% 65%, 0% 100%);*/
+    clip-path: polygon(35% 0, 0% 100%, 60% 0);
+    width: 200px;
+    height: 200px;
+    background: #E0E6E5;
 }

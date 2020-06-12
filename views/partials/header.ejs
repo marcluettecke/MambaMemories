@@ -2,45 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MambaMemories</title>
+    <title>Mamba/Memories</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="/" class="navbar-brand">MambaMemories</a>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Mamba/Memories</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if(!currentUser){ %>
+                        <li><a class="header-links" href="/login">Login</a></li>
+                        <li><a class="header-links" href="/register">Sign Up</a></li>
+                    <% } else { %>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="badge"><%= notifications.length %></span></a>
+                          <ul class="dropdown-menu">
+                            <li>
+                                <a href="/notifications">View past notifications</a>
+                            </li>
+                            <% notifications.forEach(function(notification) { %>
+                                <li>
+                                    <a href="/notifications/<%= notification.id %>">
+                                        <%= notification.username %> created a new memory
+                                    </a>
+                                </li>
+                            <% }); %>
+                          </ul>
+                        </li>
+                        <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    <% } %>
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <!--                    if no user-->
-                <% if(!currentUser) { %>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Sign up</a></li>
-                <% } else { %>
-                    <li><a href="#">Signed in as <%= currentUser.username %></a></li>
-                    <li><a href="/logout">Log out</a></li>
-                <% } %>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-    <% if (error && error.length > 0) { %>
-        <div class="alert alert-danger" role="alert">
-            <%= error %>
-        </div>
-    <% } %>
-    <% if (success && success.length > 0) { %>
-        <div class="alert alert-success" role="alert">
-            <%= success %>
-        </div>
-    <% }%>
+    </nav>
 </div>
+    <div class="container">
 
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
