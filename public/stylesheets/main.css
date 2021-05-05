@@ -149,3 +149,15 @@ body {
     height: 200px;
     background: #E0E6E5;
 }
+
+.flash-message {
+    margin-top: 10rem;
+}
+/*footer styling*/
+.wrapper {
+    margin-top: 50px;
+    min-height: calc(100vh - 50px);
+}
+footer {
+    height: 50px;
+}
